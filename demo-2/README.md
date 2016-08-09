@@ -23,6 +23,12 @@ kubectl --namespace=demo create -f wordpress-service.yaml
 kubectl --namespace=demo describe service wordpress
 ```
 
+## What do we have so far?
+
+```
+kubectl --namespace=demo get deployment,rs,pod,svc
+```
+
 ## Scale Wordpress
 
 ```
