@@ -22,3 +22,9 @@ kubectl --namespace=demo create -f varnish-deployment.yaml
 ```
 kubectl --namespace=demo apply -f wordpress-service.yaml 
 ```
+
+## Check Header to confirm it worked
+
+```
+http HEAD $(kubectl --namespace=demo get svc wordpress -o 'jsonpath={.Status.LoadBalancer.Ingress[0].Hostname}')
+```
