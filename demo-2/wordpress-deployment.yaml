@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+    tier: application
+    version: v4.5.2
+    k8s/version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: application
+      version: v4.5.2
+      k8s/version: v1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: application
+        version: v4.5.2
+        k8s/version: v1
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:4.5.2-apache
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql
+        # FIXME user/pass from secret
+        - name: WORDPRESS_DB_USER
+          value: root
+        - name: WORDPRESS_DB_PASSWORD
+          value: root
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
+        livenessProbe:
+          initialDelaySeconds: 30
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 500Mi
+      restartPolicy: Always
