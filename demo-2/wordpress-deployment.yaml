@@ -51,7 +51,7 @@ spec:
         - containerPort: 80
           protocol: TCP
         readinessProbe:
-          initialDelaySeconds: 20
+          initialDelaySeconds: 40
           httpGet:
             path: /
             port: 80
