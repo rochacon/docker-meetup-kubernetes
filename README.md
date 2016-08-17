@@ -7,6 +7,7 @@ Slides: https://docs.google.com/presentation/d/1kqgtTx4fnOHwax3GbHin7X-GkHGLwogo
 ## Demos
 
 [demo-1](demo-1/) Kubernetes Hello World
-[demo-2](demo-2/) Subindo um blog. 
-[demo-3](demo-3/) Aguentando mais tráfego: adicionando uma camada de cache no blog.
 
+[demo-2](demo-2/) Subindo um blog. 
+
+[demo-3](demo-3/) Aguentando mais tráfego: adicionando uma camada de cache no blog.
